@@ -7,7 +7,12 @@ export class ApiClient {
     const response = await fetch(`${API_URL}${endpoint}`);
 
     if (!response.ok) {
-      throw new Error(`API call failed: ${response.statusText}`);
+      const errorBody = await response.text();
+      throw {
+        status: response.status,
+        message: errorBody || `API call failed: ${response.statusText}`,
+        endpoint
+      };
     }
 
     return response.json();

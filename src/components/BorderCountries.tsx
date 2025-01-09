@@ -11,7 +11,12 @@ export function BorderCountries({ borders }: BorderCountriesProps) {
     return (
       <div className="mt-4">
         <h2 className="text-xl font-semibold mb-2">Border Countries</h2>
-        <p className="text-gray-600">This country has no bordering countries.</p>
+        <div className="bg-gray-100 p-4 rounded-lg text-center">
+          <p className="text-gray-600 mb-2">No bordering countries found.</p>
+          <p className="text-xs text-gray-500">
+            This could be due to incomplete data or geographic isolation.
+          </p>
+        </div>
       </div>
     );
   }
@@ -26,7 +31,7 @@ export function BorderCountries({ borders }: BorderCountriesProps) {
             href={`/country/${country.countryCode}`}
             className="flex flex-col items-center p-4 bg-white border rounded-lg hover:bg-gray-50 transition-all hover:shadow-md"
           >
-            {country.flagUrl && (
+            {country.flagUrl ? (
               <div className="relative w-full aspect-[3/2] mb-2 overflow-hidden rounded shadow">
                 <Image
                   src={country.flagUrl}
@@ -35,6 +40,10 @@ export function BorderCountries({ borders }: BorderCountriesProps) {
                   className="object-cover"
                   priority
                 />
+              </div>
+            ) : (
+              <div className="w-full aspect-[3/2] mb-2 bg-gray-200 rounded shadow flex items-center justify-center text-sm text-gray-600">
+                Flag Unavailable
               </div>
             )}
             <span className="text-sm font-medium text-center">{country.name}</span>
