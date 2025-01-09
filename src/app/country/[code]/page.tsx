@@ -6,7 +6,6 @@ import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { ApiClient } from '@/lib/api-client';
 import { PopulationChart } from '@/components/PopulationChart';
-import { BorderCountries } from '@/components/BorderCountries';
 import type { CountryInfo } from '@/types';
 
 export default function CountryPage() {
